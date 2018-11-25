@@ -25,9 +25,14 @@ void loop(){
   //analogWrite(11, 255);
   //test_3();
 
-  analogWrite(10, 127);
-  analogWrite(11, 127);
-  test_5();
+
+  for(int i = 0; i < 256; ++i){
+    analogWrite(10, i);
+    analogWrite(11, 255);
+    test_5();
+  }
+  
+  
 }
 
 void test(){
