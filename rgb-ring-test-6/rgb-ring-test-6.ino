@@ -8,7 +8,6 @@ byte a = B00000001;
 int counter = 0;
 int g = 0;
 int b = 255;
-int p = 3;
 
 void setup(){
   Serial.begin(9600);
@@ -18,15 +17,11 @@ void setup(){
 }
 
 void loop(){
-  int i = 0;
-  pt(&i);
-  Serial.print(i);
-  delay(500);
-  //demo2();
+  demo1();
 }
 
-void pt(int *a){
-  *a = 5;
+void pt(int *p){
+  *p = 5;
 }  
 
 void demo1(){
@@ -46,8 +41,8 @@ void demo1(){
 
   delay(100);
 
-  g += 5;
-  b -= 5; 
+  g += 4;
+  b -= 4; 
 }
 
 byte bitSL(){
@@ -63,21 +58,43 @@ byte bitSL(){
 }
 
 void demo2(){
-  analogWrite(pwm_g, g);
-  analogWrite(pwm_b, b);
+  while(g < 256 && b > 0){
+    g += 8;
+    b -= 8;
 
-  digitalWrite(2, 1);
-  digitalWrite(3, 1);
-  digitalWrite(4, 1);
-  digitalWrite(5, 1);
-  digitalWrite(6, 1);
-  digitalWrite(7, 1);
-  digitalWrite(8, 1);
-  digitalWrite(9, 1);
+    analogWrite(pwm_g, g);
+    analogWrite(pwm_b, b);
+  
+    digitalWrite(2, 1);
+    digitalWrite(3, 1);
+    digitalWrite(4, 1);
+    digitalWrite(5, 1);
+    digitalWrite(6, 1);
+    digitalWrite(7, 1);
+    digitalWrite(8, 1);
+    digitalWrite(9, 1);
+  
+    delay(50);
+  }
 
-  delay(100);
+  while(g > 0 && b < 256){
+    g -= 8;
+    b += 8;
 
-  seq();
+    analogWrite(pwm_g, g);
+    analogWrite(pwm_b, b);
+  
+    digitalWrite(2, 1);
+    digitalWrite(3, 1);
+    digitalWrite(4, 1);
+    digitalWrite(5, 1);
+    digitalWrite(6, 1);
+    digitalWrite(7, 1);
+    digitalWrite(8, 1);
+    digitalWrite(9, 1);
+  
+    delay(50);
+  }
 }
 
 void seq(){
