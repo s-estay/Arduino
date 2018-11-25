@@ -2,6 +2,7 @@
 const int pwm_g = 10;
 const int pwm_b = 11;
 const int leds[] = {2};
+int decC = 0;
 
 void setup(){
   pinMode(leds[0], OUTPUT);
@@ -11,22 +12,25 @@ void setup(){
 void loop(){
   unsigned int gbC[2];
 
-  for(int decC = 0; decC < 2; ++decC){
-    int incC;    
-    if (decC == 1){
-        incC = 0;
-    }
-    else{
-      incC = decC + 1;
-    }
+//  for(int decC = 0; decC < 2; ++decC){
+//    int incC;    
+//    if (decC == 1){
+//        incC = 0;
+//    }
+//    else{
+//      incC = decC + 1;
+//    }
 
-    for(int i = 0; i < 255; ++i){
-      --gbC[decC];
-      ++gbC[incC];
-      
-      setC(gbC[0], gbC[1]);
-      delay(5);
-    }
+  
+  int incC = decC == 0 ? 1 : 0;
+  decC ^= decC;
+     
+  for(int i = 0; i < 255; ++i){
+    --gbC[decC];
+    ++gbC[incC];
+    
+    setC(gbC[0], gbC[1]);
+    delay(5);
   }
 }
 
