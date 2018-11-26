@@ -1,4 +1,4 @@
-
+ 
 const int pwm_g = 10;
 const int pwm_b = 11;
 const int nL = 8;
@@ -41,8 +41,8 @@ void demo1(){
 
   delay(100);
 
-  g += 4;
-  b -= 4; 
+  g += 1   i;
+  b -= 1; 
 }
 
 byte bitSL(){
