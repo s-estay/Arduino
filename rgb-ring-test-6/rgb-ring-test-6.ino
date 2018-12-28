@@ -1,8 +1,9 @@
  
+const int pwm_r = 9;
 const int pwm_g = 10;
 const int pwm_b = 11;
 const int nL = 8;
-const int leds[] = {2, 3, 4, 5, 6, 7, 8, 9};
+const int leds[] = {2, 3, 4, 5, 6};
 int decC = 0;
 byte a = B00000001;
 int counter = 0;
@@ -10,21 +11,21 @@ int g = 0;
 int b = 255;
 
 void setup(){
-  Serial.begin(9600);
   for(int i = 0; i < nL; ++i){
     pinMode(leds[i], OUTPUT);
   }
 }
 
 void loop(){
-  demo1();
+  jul_1();
 }
 
 void pt(int *p){
   *p = 5;
 }  
 
-void demo1(){
+void jul_1(){
+  analogWrite(pwm_r, r);
   analogWrite(pwm_g, g);
   analogWrite(pwm_b, b);
 
@@ -41,7 +42,7 @@ void demo1(){
 
   delay(100);
 
-  g += 1   i;
+  g += 1;
   b -= 1; 
 }
 
@@ -57,7 +58,7 @@ byte bitSL(){
   return a;
 }
 
-void demo2(){
+void jul_2(){
   while(g < 256 && b > 0){
     g += 8;
     b -= 8;
